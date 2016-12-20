@@ -1,20 +1,24 @@
 package com.codurance.tesco.mockito;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private List<Customer> customers = new ArrayList<>();
+    private final CustomersRepository customersRepository;
+
+    public Application(CustomersRepository customersRepository) {
+        this.customersRepository = customersRepository;
+    }
+
 
     public List<Customer> allCustomers() {
-        return new ArrayList<>(customers);
+        return customersRepository.allCustomers();
     }
 
     public void storeCustomer(Customer customer) {
-        customers.add(customer);
+        customersRepository.storeCustomer(customer);
     }
 
     public void removeCustomer(Customer customer) {
-        customers.remove(customer);
+        customersRepository.removeCustomer(customer);
     }
 }
